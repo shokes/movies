@@ -10,6 +10,7 @@ const AppProvider = function ({ children }) {
     allMovies: data,
     activeFilter: "all",
     total_movies: 0,
+    tempStock: 1,
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -18,11 +19,11 @@ const AppProvider = function ({ children }) {
     dispatch({ type: "CATEGORY_MOVIES", payload: value });
   };
 
-  const addBookmark = (index) => {
-    dispatch({ type: "ADD_BOOKMARK", payload: { index } });
+  const addBookmark = (index, movie) => {
+    dispatch({ type: "ADD_BOOKMARK", payload: { index, movie } });
   };
-  const removeBookmark = (index) => {
-    dispatch({ type: "REMOVE_BOOKMARK", payload: { index } });
+  const removeBookmark = (index, movie) => {
+    dispatch({ type: "REMOVE_BOOKMARK", payload: { index, movie } });
   };
 
   return (

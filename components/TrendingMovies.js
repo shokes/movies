@@ -2,6 +2,8 @@ import React from "react";
 import { useGlobalContext } from "@/context";
 import { data } from "@/data";
 import Image from "next/image";
+import Link from "next/link";
+import Bookmark from "@/pages/Bookmark";
 
 const TrendingMovies = () => {
   const { movies, activeFilter, moviesCategory } = useGlobalContext();
@@ -16,6 +18,7 @@ const TrendingMovies = () => {
 
   return (
     <section>
+      <Link href="/Bookmark">bookmark</Link>
       <div>
         <ul>
           {["all", ...new Set(category)].map((item, index) => {
