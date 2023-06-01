@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { data } from "@/data";
-//import Trending from "@/components/Trending";
+import Trending from "@/components/Trending";
 
 export default function Home() {
   return (
     <section>
       <h1>greetings</h1>
-      <div>
+      {/* <div>
         {data.map((item, index) => {
           const url = item?.thumbnail?.regular?.small;
           return (
@@ -23,21 +23,8 @@ export default function Home() {
             </article>
           );
         })}
-      </div>
-      {/* <div>
-        {data.map((item) => {
-          //console.log(item.thumbnail.regular.large);
-          return (
-            <>
-              <Image
-                src={item.thumbnail.regular.large}
-                width={500}
-                height={500}
-              />
-            </>
-          );
-        })}
       </div> */}
+      <Trending />
     </section>
   );
 }
