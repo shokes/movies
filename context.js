@@ -14,7 +14,7 @@ const AppProvider = function ({ children }) {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const moviesCartegory = (value) => {
+  const moviesCategory = (value) => {
     dispatch({ type: "CATEGORY_MOVIES", payload: value });
   };
 
@@ -27,7 +27,7 @@ const AppProvider = function ({ children }) {
 
   return (
     <AppContext.Provider
-      value={{ ...state, moviesCartegory, addBookmark, removeBookmark }}
+      value={{ ...state, moviesCategory, addBookmark, removeBookmark }}
     >
       {children}
     </AppContext.Provider>

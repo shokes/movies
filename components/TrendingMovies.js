@@ -4,22 +4,38 @@ import { data } from "@/data";
 import Image from "next/image";
 
 const TrendingMovies = () => {
-  const { movies, activeFilter } = useGlobalContext();
+  const { movies, activeFilter, moviesCategory } = useGlobalContext();
 
   const noOfMovies = movies.length;
-  let collection = [];
+  let category = [];
   {
     data.map((movie) => {
-      collection.push(movie.collection);
+      category.push(movie.category);
     });
   }
 
   return (
     <section>
-      TrendingMovies
+      <div>
+        <ul>
+          {["all", ...new Set(category)].map((item, index) => {
+            return (
+              <li
+                key={index}
+                onClick={() => {
+                  moviesCategory(item);
+                }}
+              >
+                {item}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+      TrendingMovieshhblibiewf
       <p>{noOfMovies} are available</p>
-      {data.map((movies, index) => {
-        const url = movies?.thumbnail?.regular.large;
+      {movies.map((data, index) => {
+        const url = data?.thumbnail?.regular.large;
 
         return (
           <article key={index}>
