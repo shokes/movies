@@ -3,12 +3,12 @@ import { useGlobalContext } from "@/context";
 import { data } from "@/data";
 import Image from "next/image";
 import Link from "next/link";
-import Bookmark from "@/pages/Bookmark";
 
 const TrendingMovies = () => {
-  const { movies, activeFilter, moviesCategory } = useGlobalContext();
+  const { movies, moviesCategory, addBookmark, tempStock } = useGlobalContext();
 
   const noOfMovies = movies.length;
+  const categoryPage = moviesCategory.title;
   let category = [];
   {
     data.map((movie) => {
@@ -18,12 +18,12 @@ const TrendingMovies = () => {
 
   return (
     <section>
-      <Link href="/Bookmark">bookmark</Link>
       <div>
         <ul>
           {["all", ...new Set(category)].map((item, index) => {
             return (
               <li
+                className="cursor-pointer"
                 key={index}
                 onClick={() => {
                   moviesCategory(item);
@@ -35,26 +35,35 @@ const TrendingMovies = () => {
           })}
         </ul>
       </div>
-      TrendingMovieshhblibiewf
-      <p>{noOfMovies} are available</p>
-      {movies.map((data, index) => {
-        const url = data?.thumbnail?.regular.large;
+      {/* title */}
+      <div></div>
+      {/* movie list */}
+      <div>
+        <h3>{categoryPage}</h3>
 
-        return (
-          <article key={index}>
-            <div>
-              <Image
-                src={`/${url}`}
-                width={500}
-                height={500}
-                alt={movies.title}
-                className="w-[500px] h-[500px]"
-                priority
-              />
-            </div>
-          </article>
-        );
-      })}
+        <h3>{noOfMovies} available</h3>
+        <div className="grid grid-cols-4 gap-x-6 gap-y-14 w-[1078px]">
+          {movies.map((data, index) => {
+            const url = data?.thumbnail?.regular.large;
+
+            return (
+              <article key={index}>
+                {/* <h3>{data.category}</h3> */}
+                <div>
+                  <Image
+                    src={`/${url}`}
+                    width={280}
+                    height={174}
+                    alt={data.title}
+                    className="w-auto h-auto overflow-hidden rounded-3xl"
+                    priority
+                  />
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
     </section>
   );
 };

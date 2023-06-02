@@ -15,18 +15,42 @@ const reducer = (state, action) => {
       activeFilter: action.payload,
     };
   }
+
   if (action.type === "ADD_BOOKMARK") {
     const { index, movie } = action.payload;
 
-    const tempItem = state.bookmark.find((i) => i.index === index);
+    const tempItem = state.bookmark.filter((i) => i.index === index);
     if (tempItem) {
       const tempBookmark = state.bookmark.map((bookmarkMovie) => {
         if (bookmarkMovie.index === index) {
-          console.log(bookmarkMovie);
+          return { ...bookmarkMovie };
+        } else {
+          return bookmarkMovie;
         }
       });
+      return { ...state, bookmark: tempBookmark };
+    } else {
+      const newMovie = {
+        index: index,
+        name: movie.title,
+      };
+      return {
+        ...state,
+        bookmark: [...state.bookmark, newMovie],
+        tempStock: 1,
+      };
     }
   }
+  if (action.type === "REMOVE_BOOKMARK") {
+    const tempBookmark = state.bookmark.filter(
+      (movie) => movie.index !== action.payload
+    );
+    return {
+      ...state,
+      bookmark: tempBookmark,
+    };
+  }
+
   throw new Error(`No Matching '${action.type}' - action type`);
 };
 

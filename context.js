@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useEffect } from "react";
+import React, { useContext, useReducer, useEffect, useRef } from "react";
 import { data } from "./data";
 import reducer from "./reducer";
 
@@ -15,6 +15,8 @@ const AppProvider = function ({ children }) {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  //const searchValue = useRef('')
+
   const moviesCategory = (value) => {
     dispatch({ type: "CATEGORY_MOVIES", payload: value });
   };
@@ -22,8 +24,8 @@ const AppProvider = function ({ children }) {
   const addBookmark = (index, movie) => {
     dispatch({ type: "ADD_BOOKMARK", payload: { index, movie } });
   };
-  const removeBookmark = (index, movie) => {
-    dispatch({ type: "REMOVE_BOOKMARK", payload: { index, movie } });
+  const removeBookmark = (index) => {
+    dispatch({ type: "REMOVE_BOOKMARK", payload: { index } });
   };
 
   return (
