@@ -9,7 +9,8 @@ import { BiCameraMovie } from "react-icons/bi";
 //import Trending from "./Trending";
 
 const TrendingMovies = () => {
-  const { movies, moviesCategory, addBookmark, tempStock } = useGlobalContext();
+  const { movies, moviesCategory, addBookmark, tempStock, activeFilter } =
+    useGlobalContext();
   const noOfMovies = movies.length;
 
   let category = [];
@@ -21,13 +22,51 @@ const TrendingMovies = () => {
 
   return (
     <section>
-      <div className="flex">
-        <div>
+      <div className="flex justify-between">
+        <div className="bg-[#161D2F] h-[960px] w-[96px] text-center">
           <ul>
             {["all", ...new Set(category)].map((item, index) => {
+              if (item === "Movie") {
+                return (
+                  <li
+                    className={`text-4xl ease-in duration-300 flex justify-center ${
+                      activeFilter === item
+                        ? "text-white cursor-pointer"
+                        : "text-[#5A698F] cursor-pointer"
+                    }`}
+                    key={index}
+                    onClick={() => {
+                      moviesCategory(item);
+                    }}
+                  >
+                    <MdLocalMovies />
+                  </li>
+                );
+              }
+              if (item === "TV Series") {
+                return (
+                  <li
+                    className={`text-4xl ease-in duration-300 flex justify-center ${
+                      activeFilter === item
+                        ? "text-white cursor-pointer"
+                        : "text-[#5A698F] cursor-pointer"
+                    }`}
+                    key={index}
+                    onClick={() => {
+                      moviesCategory(item);
+                    }}
+                  >
+                    <BiCameraMovie />
+                  </li>
+                );
+              }
               return (
                 <li
-                  className="cursor-pointer"
+                  className={`text-4xl ${
+                    activeFilter === item
+                      ? "text-white cursor-pointer"
+                      : "text-[#5A698F] cursor-pointer"
+                  }`}
                   key={index}
                   onClick={() => {
                     moviesCategory(item);
