@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
+  --background-dark: #10141e;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
@@ -12,4 +12,10 @@
   display: flex;
   flex-wrap: nowrap;
   overflow-x: scroll;
+}
+.item {
+  width: 100vw;
+}
+body {
+  background-color: var(--background-dark);
 }

@@ -1,4 +1,10 @@
-import React, { useContext, useReducer, useEffect, useRef } from "react";
+import React, {
+  useContext,
+  useReducer,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { data } from "./data";
 import reducer from "./reducer";
 
@@ -15,10 +21,14 @@ const AppProvider = function ({ children }) {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  //const searchValue = useRef('')
+  const [searchTerm, setSearchTerm] = useState("");
 
   const moviesCategory = (value) => {
     dispatch({ type: "CATEGORY_MOVIES", payload: value });
+  };
+
+  const moviesTrending = (value) => {
+    dispatch({ type: "TRENDING_MOVIES", payload: value });
   };
 
   const addBookmark = (index, movie) => {
@@ -30,7 +40,15 @@ const AppProvider = function ({ children }) {
 
   return (
     <AppContext.Provider
-      value={{ ...state, moviesCategory, addBookmark, removeBookmark }}
+      value={{
+        ...state,
+        moviesCategory,
+        addBookmark,
+        removeBookmark,
+        moviesTrending,
+        searchTerm,
+        setSearchTerm,
+      }}
     >
       {children}
     </AppContext.Provider>

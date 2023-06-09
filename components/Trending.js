@@ -1,25 +1,22 @@
 import React from "react";
 import { data } from "@/data";
-
 import Image from "next/image";
+import { useGlobalContext } from "@/context";
 
 const Trending = () => {
-  const handleScroll = (event) => {
-    const container = event.target;
-    const scrollAmount = event.deltaY;
-    container.scrollTo({
-      top: 0,
-      left: container.scrollLeft + scrollAmount,
-      behaviour: "smooth",
+  const { movies, moviesTrending } = useGlobalContext();
+  let trending = [];
+
+  {
+    trending.map((movie) => {
+      movie.isTrending === true;
     });
-  };
+  }
+
   return (
     <section>
       <h3>Trending</h3>
-      <div
-        className="flex flex-nowrap overflow-x-scroll gap-x-6"
-        onWheel={handleScroll}
-      >
+      <div className="flex flex-nowrap overflow-x-scroll gap-x-6">
         {data.map((item, index) => {
           const url = item?.thumbnail?.regular?.large;
           if (item.isTrending === true) {

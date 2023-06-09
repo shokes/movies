@@ -6,6 +6,17 @@ const reducer = (state, action) => {
       activeFilter: action.payload,
     };
   }
+  if (action.type === "TRENDING_MOVIES") {
+    let movies = state.allMovies;
+    movies = movies.filter((movie) => movie.isTrending === action.payload);
+
+    return {
+      ...state,
+      movies,
+      activeFilter: action.payload,
+    };
+  }
+
   if (action.type === "CATEGORY_MOVIES") {
     let movies = state.allMovies;
     movies = movies.filter((movie) => movie.category === action.payload);
