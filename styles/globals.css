@@ -13,9 +13,23 @@
   flex-wrap: nowrap;
   overflow-x: scroll;
 }
-.item {
+.ite {
   width: 100vw;
 }
 body {
   background-color: var(--background-dark);
+}
+.wrapper {
+  max-height: 120;
+  display: flex;
+  overflow-x: auto;
+}
+.wrapper::-webkit-scrollbar {
+  width: 0;
+}
+.wrappe .ite {
+  min-width: 110px;
+  height: 110px;
+  line-height: 110px;
+  margin-right: 2px;
 }

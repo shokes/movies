@@ -6,7 +6,11 @@ import Link from "next/link";
 import { BsDot } from "react-icons/bs";
 import { MdLocalMovies } from "react-icons/md";
 import { BiCameraMovie } from "react-icons/bi";
-//import Trending from "./Trending";
+import Logo from "../public/assets/logo.svg";
+import Avatar from "../public/assets/image-avatar.png";
+import { CgMenuBoxed } from "react-icons/cg";
+import Tmovies from "./Tmovies";
+import SearchForm from "./SearchForm";
 
 const TrendingMovies = () => {
   const { movies, moviesCategory, addBookmark, tempStock, activeFilter } =
@@ -21,15 +25,22 @@ const TrendingMovies = () => {
   }
 
   return (
-    <section>
-      <div className="flex justify-between">
-        <div className="bg-[#161D2F] h-[960px] w-[96px] text-center">
-          <ul>
+    <section className="mx-9">
+      <div className="flex gap-x-9">
+        <div className="bg-[#161D2F] h-[960px] w-[96px] text-center my-8 rounded-2xl flex flex-col justify-between py-8">
+          <ul className="">
+            <Image
+              src={Logo}
+              alt="Logo"
+              width={40}
+              height={40}
+              className="mx-auto mb-[75px]"
+            />
             {["all", ...new Set(category)].map((item, index) => {
               if (item === "Movie") {
                 return (
                   <li
-                    className={`text-4xl ease-in duration-300 flex justify-center ${
+                    className={`text-4xl ease-in duration-300 flex justify-center my-10 ${
                       activeFilter === item
                         ? "text-white cursor-pointer"
                         : "text-[#5A698F] cursor-pointer"
@@ -46,7 +57,7 @@ const TrendingMovies = () => {
               if (item === "TV Series") {
                 return (
                   <li
-                    className={`text-4xl ease-in duration-300 flex justify-center ${
+                    className={`text-4xl ease-in duration-300 flex justify-center  ${
                       activeFilter === item
                         ? "text-white cursor-pointer"
                         : "text-[#5A698F] cursor-pointer"
@@ -62,7 +73,7 @@ const TrendingMovies = () => {
               }
               return (
                 <li
-                  className={`text-4xl ${
+                  className={`text-4xl ease-in duration-300 flex justify-center ${
                     activeFilter === item
                       ? "text-white cursor-pointer"
                       : "text-[#5A698F] cursor-pointer"
@@ -72,45 +83,36 @@ const TrendingMovies = () => {
                     moviesCategory(item);
                   }}
                 >
-                  {item}
+                  <CgMenuBoxed />
                 </li>
               );
             })}
           </ul>
+          <div className="flex justify-center">
+            <Image
+              src={Avatar}
+              alt="avatar"
+              width={40}
+              height={40}
+              className="cursor-pointer"
+            />
+          </div>
         </div>
         {/* trending */}
-        {/* <div>
-          {data.map((item, index) => {
-            const url = item?.thumbnail?.regular?.large;
-            if (item.isTrending === true) {
-              return (
-                <article key={index} className="">
-                  <div className="w-[470px] relative">
-                    <Image
-                      src={`/${url}`}
-                      width={470}
-                      height={230}
-                      alt={item.title}
-                      className="rounded-2xl w-[470px] h-[230px] overflow-hidden"
-                    />
-                    <div className="absolute top-0 text-white">
-                      <p>{item.year}</p>
-                      <p>{item.category}</p>
-                      <p>{item.rating}</p>
-                      <p>{item.title}</p>
-                    </div>
-                  </div>
-                </article>
-              );
-            }
-            return null;
-          })}
-        </div> */}
+        <div></div>
         {/* end of trending */}
         <div>
+          <div className="mt-[64px] mb-[34px]">
+            <SearchForm />
+          </div>
           <div>
-            <h3>{noOfMovies} available</h3>
-            <div className="grid grid-cols-4 gap-x-7 gap-y-14 ga4 w-[1078px]">
+            {/* trending */}
+            <Tmovies />
+            {/* end of trending */}
+            <h3 className="text-[32px] font-light pb-[38px]">
+              {noOfMovies} Available
+            </h3>
+            <div className="grid grid-cols-4 gap-x-7 gap-y-14 w-[1078px]">
               {movies.map((data, index) => {
                 const url = data?.thumbnail?.regular.large;
                 if (data.category === "Movie") {
