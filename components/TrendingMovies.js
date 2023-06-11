@@ -11,10 +11,20 @@ import Avatar from "../public/assets/image-avatar.png";
 import { CgMenuBoxed } from "react-icons/cg";
 import Tmovies from "./Tmovies";
 import SearchForm from "./SearchForm";
+import { useParams } from "react-router-dom";
 
 const TrendingMovies = () => {
-  const { movies, moviesCategory, addBookmark, tempStock, activeFilter } =
-    useGlobalContext();
+  const { index } = useParams();
+  const {
+    allMovies,
+    movies,
+    moviesCategory,
+    addBookmark,
+    tempStock,
+    activeFilter,
+  } = useGlobalContext();
+
+  //const single = allMovies.find((item) => item.index === index);
   const noOfMovies = movies.length;
 
   let category = [];
@@ -99,12 +109,11 @@ const TrendingMovies = () => {
           </div>
         </div>
         {/* trending */}
-        <div></div>
         {/* end of trending */}
         <div>
-          <div className="mt-[64px] mb-[34px]">
+          {/* <div className="mt-[64px] mb-[34px]">
             <SearchForm />
-          </div>
+          </div> */}
           <div>
             {/* trending */}
             <Tmovies />
@@ -144,6 +153,12 @@ const TrendingMovies = () => {
                 } else null;
                 return (
                   <article key={index}>
+                    <Link
+                      href="/bookmark"
+                      onClick={() => addBookmark(tempStock)}
+                    >
+                      add to bookmark
+                    </Link>
                     <Image
                       priority
                       src={`/${url}`}

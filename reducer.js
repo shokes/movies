@@ -28,9 +28,9 @@ const reducer = (state, action) => {
   }
 
   if (action.type === "ADD_BOOKMARK") {
-    const { index, movie } = action.payload;
+    const { value } = action.payload;
 
-    const tempItem = state.bookmark.filter((i) => i.index === index);
+    const tempItem = state.bookmark.find((i) => i.index === index);
     if (tempItem) {
       const tempBookmark = state.bookmark.map((bookmarkMovie) => {
         if (bookmarkMovie.index === index) {
@@ -42,8 +42,8 @@ const reducer = (state, action) => {
       return { ...state, bookmark: tempBookmark };
     } else {
       const newMovie = {
-        index: index,
-        name: movie.title,
+        index: value.index,
+        title: value.title,
       };
       return {
         ...state,

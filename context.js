@@ -11,11 +11,21 @@ import reducer from "./reducer";
 const AppContext = React.createContext();
 
 const AppProvider = function ({ children }) {
+  //   const getLocalStorage = () => {
+  //     let bookmark = localStorage.getItem("bookmark");
+  //     if (bookmark) {
+  //       return JSON.parse(localStorage.getItem("bookmark"));
+  //     } else {
+  //       return [];
+  //     }
+  //   };
+
   const initialState = {
     movies: data,
     allMovies: data,
     activeFilter: "all",
     total_movies: 0,
+    bookmark: [],
     tempStock: 1,
   };
 
@@ -31,8 +41,8 @@ const AppProvider = function ({ children }) {
     dispatch({ type: "TRENDING_MOVIES", payload: value });
   };
 
-  const addBookmark = (index, movie) => {
-    dispatch({ type: "ADD_BOOKMARK", payload: { index, movie } });
+  const addBookmark = (value) => {
+    dispatch({ type: "ADD_BOOKMARK", payload: { value } });
   };
   const removeBookmark = (index) => {
     dispatch({ type: "REMOVE_BOOKMARK", payload: { index } });
