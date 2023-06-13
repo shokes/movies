@@ -7,10 +7,10 @@ import Search from "@/components/Search";
 export default function Home() {
   return (
     <section className="text-white">
-      <TrendingMovies />
       {/* <SearchForm /> */}
       {/* <Tmovies />  */}
-      {/* <Search /> */}
+      <Search />
+      <TrendingMovies />
     </section>
   );
 }

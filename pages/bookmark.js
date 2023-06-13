@@ -12,9 +12,9 @@ const Bookmark = () => {
     <section className="text-white">
       <div>
         {bookmark.map((item) => {
-          const { index, title } = item;
+          const { title, id } = item;
           return (
-            <article key={index}>
+            <article key={id}>
               <p>{title}</p>
             </article>
           );

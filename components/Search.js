@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { data } from "@/data";
+import { useGlobalContext } from "@/context";
 
 const Search = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const { searchTerm, setSearchTerm } = useGlobalContext();
   return (
-    <>
+    <section>
       <div>
         <div>
           <input
@@ -37,7 +38,7 @@ const Search = () => {
             })}
         </div>
       </div>
-    </>
+    </section>
   );
 };
 
