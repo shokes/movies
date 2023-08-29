@@ -1,64 +1,20 @@
 const reducer = (state, action) => {
-  if (action.type === "CATEGORY_MOVIES" && action.payload === "all") {
+  if (action.type === "HANDLE_CATEGORY" && action.payload === "all") {
     return {
       ...state,
-      movies: state.allMovies,
+      movie_list: state.allMovies,
       activeFilter: action.payload,
     };
   }
-  if (action.type === "TRENDING_MOVIES") {
-    let movies = state.allMovies;
-    movies = movies.filter((movie) => movie.isTrending === action.payload);
-
-    return {
-      ...state,
-      movies,
-      activeFilter: action.payload,
-    };
-  }
-
-  if (action.type === "CATEGORY_MOVIES") {
-    let movies = state.allMovies;
-    movies = movies.filter((movie) => movie.category === action.payload);
-    return {
-      ...state,
-      movies,
-      activeFilter: action.payload,
-    };
-  }
-
-  if (action.type === "ADD_BOOKMARK") {
-    const { movie, index } = action.payload;
-
-    const tempItem = state.bookmark.find((i) => i.index === index);
-    if (tempItem) {
-      const tempBookmark = state.bookmark.map((bookmarkMovie) => {
-        if (bookmarkMovie.index === index) {
-          return { ...bookmarkMovie };
-        } else {
-          return bookmarkMovie;
-        }
-      });
-      return { ...state, bookmark: tempBookmark };
-    } else {
-      const newMovie = {
-        id: index,
-        title: movie.title,
-      };
-      return {
-        ...state,
-        bookmark: [...state.bookmark, newMovie],
-        tempStock: 1,
-      };
-    }
-  }
-  if (action.type === "REMOVE_BOOKMARK") {
-    const tempBookmark = state.bookmark.filter(
-      (movie) => movie.index !== action.payload
+  if (action.type === "HANDLE_CATEGORY") {
+    let movie_list = state.allMovies;
+    movie_list = movie_list.filter(
+      (movies) => movies.category === action.payload
     );
     return {
       ...state,
-      bookmark: tempBookmark,
+      movie_list,
+      activeFilter: action.payload,
     };
   }
 

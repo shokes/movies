@@ -21,12 +21,11 @@ const AppProvider = function ({ children }) {
   };
 
   const initialState = {
-    movies: data,
+    movie_list: data,
     allMovies: data,
     activeFilter: "all",
     total_movies: 0,
     bookmark: [],
-    tempStock: 1,
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -34,12 +33,12 @@ const AppProvider = function ({ children }) {
   const [searchTerm, setSearchTerm] = useState("");
 
   const moviesCategory = (value) => {
-    dispatch({ type: "CATEGORY_MOVIES", payload: value });
+    dispatch({ type: "HANDLE_CATEGORY", payload: value });
   };
 
-  const moviesTrending = (value) => {
-    dispatch({ type: "TRENDING_MOVIES", payload: value });
-  };
+  // const moviesSearch = (value) => {
+  //   dispatch({ type: "HANDLE_SEARCH", payload: value });
+  // };
 
   const addBookmark = (movie, index) => {
     dispatch({ type: "ADD_BOOKMARK", payload: { movie, index } });
@@ -53,9 +52,6 @@ const AppProvider = function ({ children }) {
       value={{
         ...state,
         moviesCategory,
-        addBookmark,
-        removeBookmark,
-        moviesTrending,
         searchTerm,
         setSearchTerm,
       }}

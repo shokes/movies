@@ -1,16 +1,25 @@
-import { useGlobalContext } from "@/context";
 import React from "react";
-import { data } from "@/data";
+import Image from "next/image";
 
-const List = ({ title, year }) => {
-  const { searchTerm } = useGlobalContext();
-
+const List = ({ title, category, rating, year, thumbnail }) => {
   return (
-    <section>
-      <p>
-        {title}
-        {year}
-      </p>
+    <section className="">
+        
+      <div>
+        <Image
+          src={`/${thumbnail.regular.large}`}
+          width={280}
+          height={174}
+          priority
+          className="w-[280px] h-[174px] rounded-md"
+          alt={title}
+        />
+        <div>
+          <p>{year}</p>
+          <p>{category}</p>
+          <p>{rating}</p>
+        </div>
+      </div>
     </section>
   );
 };
