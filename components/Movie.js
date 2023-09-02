@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import { BsDot } from "react-icons/bs";
-import Svg from "../public/assets/icon-nav-tv-series.svg";
+import { TbMovie } from "react-icons/tb";
 
-const List = ({ title, category, rating, year, thumbnail }) => {
+const Movie = ({ title, category, rating, year, thumbnail }) => {
   return (
     <section className="">
       <div>
@@ -21,13 +21,9 @@ const List = ({ title, category, rating, year, thumbnail }) => {
             <BsDot />
           </p>
           <p className="flex">
-            <Image
-              src={Svg}
-              width={12}
-              height={12}
-              alt="svg"
-              className="mr-[6px] object-contain my-auto"
-            />
+            <span className="my-auto mr-[6px]">
+              <TbMovie />
+            </span>
             {category}
           </p>
           <p className="my-auto">
@@ -43,4 +39,4 @@ const List = ({ title, category, rating, year, thumbnail }) => {
   );
 };
 
-export default List;
+export default Movie;

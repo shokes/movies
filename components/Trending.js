@@ -2,7 +2,7 @@ import React from "react";
 
 const Trending = () => {
   return (
-    <section className="w-full h-[50vh]">
+    <section className="w-[470px] h-[100px]">
       <p>this is trending</p>
     </section>
   );
