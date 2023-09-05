@@ -44,8 +44,8 @@ const Search = () => {
                     moviesCategory(item);
                     //console.log(item);
                   }}
-                  className={`text-sm capitalize opacity-25 ease-in-out duration-300  ${
-                    activeFilter === item ? "text-sm opacity-100" : "null"
+                  className={`text-sm capitalize text-white ease-in-out duration-300 ${
+                    activeFilter === item ? "opacity-100" : "opacity-25"
                   }`}
                 >
                   {item}
