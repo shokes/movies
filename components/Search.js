@@ -32,10 +32,10 @@ const Search = () => {
       {/* buttons */}
       <div className="flex gap-x-9">
         <div className="bg-[#161D2F] h-[960px] w-[96px] mt-8 ml-8 rounded-lg">
-          <ul>
+          <ul className="mt-[35.4px] mb-[75px] flex justify-center">
             <Image src={HomeButton} width={32} height={25.6} alt="homebutton" />
           </ul>
-          <ul className="cursor-pointer ">
+          <ul className="cursor-pointer h-[150px] flex flex-col justify-between text-center">
             {["all", ...new Set(category)].map((item, index) => {
               return (
                 <li
@@ -44,16 +44,16 @@ const Search = () => {
                     moviesCategory(item);
                     //console.log(item);
                   }}
-                  className={`tex ${
-                    activeFilter === item ? "text-blue-700" : "null"
+                  className={`text-sm capitalize opacity-25 ease-in-out duration-300  ${
+                    activeFilter === item ? "text-sm opacity-100" : "null"
                   }`}
                 >
-                  <Image src={NavHome} width={10} height={100} alt="image" />
+                  {item}
                 </li>
               );
             })}
           </ul>
-          <ul>
+          <ul className="mt-[552px] flex justify-center">
             <Image src={User} width={40} height={40} alt="user" />
           </ul>
         </div>
@@ -79,7 +79,6 @@ const Search = () => {
           {/* movie list */}
 
           <div className=" ">
-            {category[0]}
             <h3 className="text-[32px] font-light text-white mb-8">
               Recommmended for you
             </h3>
