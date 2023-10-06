@@ -11,19 +11,20 @@ import reducer from "./reducer";
 const AppContext = React.createContext();
 
 const AppProvider = function ({ children }) {
-  const getLocalStorage = () => {
-    let bookmark = localStorage.getItem("bookmark");
-    if (bookmark) {
-      return JSON.parse(localStorage.getItem("bookmark"));
-    } else {
-      return [];
-    }
-  };
+  // const getLocalStorage = () => {
+  //   let bookmark = localStorage.getItem("bookmark");
+  //   if (bookmark) {
+  //     return JSON.parse(localStorage.getItem("bookmark"));
+  //   } else {
+  //     return [];
+  //   }
+  // };
 
   const initialState = {
     movie_list: data,
     allMovies: data,
     activeFilter: "all",
+    isTrending: false,
     total_movies: 0,
     bookmark: [],
   };
@@ -36,15 +37,11 @@ const AppProvider = function ({ children }) {
     dispatch({ type: "HANDLE_CATEGORY", payload: value });
   };
 
-  // const moviesSearch = (value) => {
-  //   dispatch({ type: "HANDLE_SEARCH", payload: value });
-  // };
-
-  const addBookmark = (movie, index) => {
-    dispatch({ type: "ADD_BOOKMARK", payload: { movie, index } });
+  const addBookmark = (index) => {
+    dispatch({ type: "ADD_BOOKMARK", payload: { index } });
   };
-  const removeBookmark = (index) => {
-    dispatch({ type: "REMOVE_BOOKMARK", payload: { index } });
+  const removeBookmark = (movie, index) => {
+    dispatch({ type: "REMOVE_BOOKMARK", payload: { movie, index } });
   };
 
   return (
@@ -54,6 +51,8 @@ const AppProvider = function ({ children }) {
         moviesCategory,
         searchTerm,
         setSearchTerm,
+        addBookmark,
+        removeBookmark,
       }}
     >
       {children}

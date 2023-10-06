@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import { useGlobalContext } from "@/context";
 
 const Bookmark = () => {
@@ -12,9 +12,9 @@ const Bookmark = () => {
     <section className="text-white">
       <div>
         {bookmark.map((item) => {
-          const { title, id } = item;
+          const { title, index } = item;
           return (
-            <article key={id}>
+            <article key={index}>
               <p>{title}</p>
             </article>
           );

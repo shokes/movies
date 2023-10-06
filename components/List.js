@@ -2,8 +2,13 @@ import React from "react";
 import Image from "next/image";
 import { BsDot } from "react-icons/bs";
 import Svg from "../public/assets/icon-nav-tv-series.svg";
+import { useGlobalContext } from "@/context";
+import { useParams } from "react-router-dom";
 
 const List = ({ title, category, rating, year, thumbnail }) => {
+  const { index } = useParams;
+  const { addBookmark, removeBookmark } = useGlobalContext();
+
   return (
     <section className="">
       <div>
@@ -15,6 +20,10 @@ const List = ({ title, category, rating, year, thumbnail }) => {
           className="w-[280px] h-[174px] rounded-md"
           alt={title}
         />
+        <div>
+          <button onClick={() => addBookmark(index)}>addBookmark</button>
+          <button onClick={() => removeBookmark()}>removeBookmark</button>
+        </div>
         <div className="mt-2 text-[13px] font-light flex gap-x-2 opacity-50">
           <p>{year}</p>
           <p className="my-auto">

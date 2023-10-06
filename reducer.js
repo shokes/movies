@@ -17,7 +17,23 @@ const reducer = (state, action) => {
       activeFilter: action.payload,
     };
   }
-
+  if (action.type === "ADD_BOOKMARK") {
+    const { index } = action.payload;
+    const tempItem = state.bookmark.find((i) => i.index === index);
+    if (tempItem) {
+      const tempBookmark = state.cart.map((bookmarkMovie) => {
+        if ((bookmarkMovie.index = index)) {
+          return { ...bookmarkMovie, ...{ isAddedToCart: true } };
+        } else {
+          return bookmarkMovie;
+        }
+      });
+      return {
+        ...state,
+        bookmark: tempBookmark,
+      };
+    }
+  }
   throw new Error(`No Matching '${action.type}' - action type`);
 };
 
