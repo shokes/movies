@@ -1,12 +1,12 @@
 const reducer = (state, action) => {
-  if (action.type === "HANDLE_CATEGORY" && action.payload === "all") {
+  if (action.type === 'HANDLE_CATEGORY' && action.payload === 'all') {
     return {
       ...state,
       movie_list: state.allMovies,
       activeFilter: action.payload,
     };
   }
-  if (action.type === "HANDLE_CATEGORY") {
+  if (action.type === 'HANDLE_CATEGORY') {
     let movie_list = state.allMovies;
     movie_list = movie_list.filter(
       (movies) => movies.category === action.payload
@@ -17,7 +17,7 @@ const reducer = (state, action) => {
       activeFilter: action.payload,
     };
   }
-  if (action.type === "ADD_BOOKMARK") {
+  if (action.type === 'ADD_BOOKMARK') {
     const { index } = action.payload;
     const tempItem = state.bookmark.find((i) => i.index === index);
     if (tempItem) {
@@ -33,8 +33,9 @@ const reducer = (state, action) => {
         bookmark: tempBookmark,
       };
     }
+  } else {
+    throw new Error(`No Matching '${action.type}' - action type`);
   }
-  throw new Error(`No Matching '${action.type}' - action type`);
 };
 
 export default reducer;
