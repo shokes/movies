@@ -4,9 +4,9 @@ import React, {
   useEffect,
   useRef,
   useState,
-} from "react";
-import { data } from "./data";
-import reducer from "./reducer";
+} from 'react';
+import { data } from './data';
+import reducer from './reducer';
 
 const AppContext = React.createContext();
 
@@ -23,7 +23,7 @@ const AppProvider = function ({ children }) {
   const initialState = {
     movie_list: data,
     allMovies: data,
-    activeFilter: "all",
+    activeFilter: 'all',
     isTrending: false,
     total_movies: 0,
     bookmark: [],
@@ -31,17 +31,17 @@ const AppProvider = function ({ children }) {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
 
   const moviesCategory = (value) => {
-    dispatch({ type: "HANDLE_CATEGORY", payload: value });
+    dispatch({ type: 'HANDLE_CATEGORY', payload: value });
   };
 
-  const addBookmark = (index) => {
-    dispatch({ type: "ADD_BOOKMARK", payload: { index } });
+  const addBookmark = (data) => {
+    dispatch({ type: 'ADD_BOOKMARK', payload: data });
   };
   const removeBookmark = (movie, index) => {
-    dispatch({ type: "REMOVE_BOOKMARK", payload: { movie, index } });
+    dispatch({ type: 'REMOVE_BOOKMARK', payload: { movie, index } });
   };
 
   return (

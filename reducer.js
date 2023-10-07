@@ -17,22 +17,35 @@ const reducer = (state, action) => {
       activeFilter: action.payload,
     };
   }
+  if (action.type === 'REMOVE_BOOKMARK') {
+    console.log('remove bookmark logic here');
+
+    return {
+      ...state,
+    };
+  }
   if (action.type === 'ADD_BOOKMARK') {
-    const { index } = action.payload;
-    const tempItem = state.bookmark.find((i) => i.index === index);
-    if (tempItem) {
-      const tempBookmark = state.cart.map((bookmarkMovie) => {
-        if ((bookmarkMovie.index = index)) {
-          return { ...bookmarkMovie, ...{ isAddedToCart: true } };
-        } else {
-          return bookmarkMovie;
-        }
-      });
-      return {
-        ...state,
-        bookmark: tempBookmark,
-      };
-    }
+    state.bookmark.push(action.payload);
+    return {
+      ...state,
+    };
+
+    // const { index } = action.payload;
+    // const tempItem = state.bookmark.find((i) => i.index === index);
+    // console.log(tempItem);
+    // if (tempItem) {
+    //   const tempBookmark = state.cart.map((bookmarkMovie) => {
+    //     if ((bookmarkMovie.index = index)) {
+    //       return { ...bookmarkMovie, ...{ isAddedToCart: true } };
+    //     } else {
+    //       return bookmarkMovie;
+    //     }
+    //   });
+    //   return {
+    //     ...state,
+    //     bookmark: tempBookmark,
+    //   };
+    // }
   } else {
     throw new Error(`No Matching '${action.type}' - action type`);
   }

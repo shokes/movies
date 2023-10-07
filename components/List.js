@@ -9,6 +9,14 @@ const List = ({ title, category, rating, year, thumbnail }) => {
   const { index } = useParams;
   const { addBookmark, removeBookmark } = useGlobalContext();
 
+  const movieData = {
+    title,
+    category,
+    rating,
+    year,
+    thumbnail,
+  };
+
   return (
     <section className=''>
       <div>
@@ -21,8 +29,8 @@ const List = ({ title, category, rating, year, thumbnail }) => {
           alt={title}
         />
         <div>
-          <button onClick={() => addBookmark(index)}>addBookmark</button>
-          {/* <button onClick={() => removeBookmark()}>removeBookmark</button>  */}
+          <button onClick={() => addBookmark(movieData)}>addBookmark</button>
+          <button onClick={() => removeBookmark()}>removeBookmark</button>
         </div>
         <div className='mt-2 text-[13px] font-light flex gap-x-2 opacity-50'>
           <p>{year}</p>
